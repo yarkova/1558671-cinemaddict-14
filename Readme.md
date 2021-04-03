@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
 * Студент: [Мария Яркова](https://up.htmlacademy.ru/ecmascript/14/user/1558671).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Кривонос](https://htmlacademy.ru/profile/id1311037).
 
 ---
 
