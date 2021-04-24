@@ -7,7 +7,10 @@ import {createFilmsTemplate} from './view/films.js';
 import {createFooterTemplate} from './view/footer.js'
 //import {createPopupTemplate} from './view/popup.js';
 
+import {generateFilms} from './mock/film.js';
 
+const films = generateFilms();
+console.log(films);
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 }
@@ -29,7 +32,9 @@ render (sortElement, createSortTemplate(), 'beforeend');
 
 
 const filmsElement = document.querySelector('.main');
-render (filmsElement, createFilmsTemplate(), 'beforeend');
+render (filmsElement, createFilmsTemplate(films), 'beforeend');
+
+
 
 // const filmFilterElement = document.querySelector('.main');
 // render (filmFilterElement, createFilmFilterTemplate(), 'beforeend');
