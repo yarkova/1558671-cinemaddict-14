@@ -1,46 +1,61 @@
-import {createSiteMenuTemplate} from './view/site-menu.js';
-//import {createStatsTemplate} from './view/stats.js';
-import {createProfileTemplate} from './view/profile.js';
-import {createSortTemplate} from './view/sort.js';
-import {createFilmsTemplate} from './view/films.js';
-//import {createFilmFilterTemplate} from './view/films-extra.js';
-import {createFooterTemplate} from './view/footer.js'
-//import {createPopupTemplate} from './view/popup.js';
+import SiteMenu from './view/site-menu.js';
+//import Stats from './view/stats.js';
+import Profile from './view/profile.js';
+import Sort from './view/sort.js';
+import Films from './view/films.js';
+//import FilmFilter from './view/films-extra.js';
+import Footer from './view/footer.js'
+import Popup from './view/popup.js';
 
 import {generateFilms} from './mock/film.js';
+import {renderTemplate, renderElement, RenderPosition} from './common/utils.js';
+import {getRandomInteger, getRandomFloat} from './common/utils.js'
 
 const films = generateFilms();
 console.log(films);
+
+
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 }
 
 const siteMainElement = document.querySelector('.main');
-render (siteMainElement, createSiteMenuTemplate(), 'beforeend');
+renderElement (siteMainElement,  new SiteMenu().getElement(), RenderPosition.BEFOREEND);
 
 
-//const statsElement = document.querySelector('body');
-//render (statsElement, createStatsTemplate(), 'beforeend');
+
+//onst statsElement = document.querySelector('body');
+//renderElement (statsElement, new Stats().getElement(), RenderPosition.BEFOREEND);
 
 
 const headerElement = document.querySelector('.header');
-render (headerElement, createProfileTemplate(), 'beforeend');
+renderElement (headerElement, new Profile().getElement(), RenderPosition.BEFOREEND);
 
 
 const sortElement = document.querySelector('.main');
-render (sortElement, createSortTemplate(), 'beforeend');
+renderElement (sortElement, new Sort().getElement(), RenderPosition.BEFOREEND);
 
 
 const filmsElement = document.querySelector('.main');
-render (filmsElement, createFilmsTemplate(films), 'beforeend');
+renderElement (filmsElement, new Films(films).getElement(), RenderPosition.BEFOREEND);
+const ClickItems = document.querySelectorAll('.film-card__title, .film-card__poster, .film-card__comments');
+for (let element of ClickItems) {
+  element.onclick = function () {
+    const popupElement = document.querySelector('body');
+    const newPopup = new Popup();
+    newPopup.getElement().querySelector('.film-details__close-btn').onclick = function () {
+      popupElement.removeChild(newPopup.getElement());
+    }
+    renderElement (popupElement, newPopup.getElement(), RenderPosition.BEFOREEND);
+
+  }
+
+};
 
 
 
 // const filmFilterElement = document.querySelector('.main');
-// render (filmFilterElement, createFilmFilterTemplate(), 'beforeend');
+// renderElement (filmFilterElement, new FilmFilter().getElement(), RenderPosition.BEFOREEND);
 
 const footerElement = document.querySelector('.footer');
-render (footerElement, createFooterTemplate(), 'beforeend');
-
-//const popupElement = document.querySelector('body');
-//render (popupElement, createPopupTemplate(), 'beforeend');
+renderElement (footerElement, new Footer().getElement(), RenderPosition.BEFOREEND);

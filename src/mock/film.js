@@ -1,11 +1,11 @@
-const getRandomInteger = (a = 0, b = 1) => {
+export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const getRandomFloat =(min, max, hundredth) => {
+export const getRandomFloat =(min, max, hundredth) => {
   min = Math.abs(min);
   max = Math.abs(max);
   hundredth = Math.abs(hundredth);
@@ -16,7 +16,7 @@ const getRandomFloat =(min, max, hundredth) => {
 };
 
 
-const generateDescription = () => {
+export const generateDescription = () => {
   const descriptions = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     'Cras aliquet varius magna, non porta ligula feugiat eget.',
@@ -37,7 +37,7 @@ const generateDescription = () => {
 
 };
 
-const generateTitle = () => {
+export const generateTitle = () => {
   const titles = [
     'Made for Each Other',
     'Santa Claus Conquers the Martians',
@@ -52,7 +52,7 @@ const generateTitle = () => {
   return titles[randomIndex];
 };
 
-const generateImage = () => {
+export const generateImage = () => {
   const images = [
     './images/posters/the-dance-of-life.jpg',
     './images/posters/sagebrush-trail.jpg',
@@ -65,7 +65,7 @@ const generateImage = () => {
   return images[randomIndex];
 };
 
-const generateRating = () => {
+export const generateRating = () => {
   const ratings = {
       MIN: 1,
       MAX: 9,
@@ -76,14 +76,14 @@ const generateRating = () => {
 
 
 
-const generateGenre = () => {
+export const generateGenre = () => {
   const genres = ['Mystery', 'Drama', 'Comedy'];
 
   const randomIndex = getRandomInteger (0, genres.length - 1);
   return genres[randomIndex];
 };
 
-const generateText = () => {
+export const generateText = () => {
   const texts = [
     'Интересная обстановка и хороший состав',
     'Booooooooooring',
@@ -94,19 +94,19 @@ const generateText = () => {
    return texts[randomIndex];
 };
 
-const generateEmotion = () => {
+export const generateEmotion = () => {
   const emotions = ['smile', 'sleeping', 'puke', 'angry'];
   const randomIndex = getRandomInteger (0, emotions.length - 1);
   return emotions[randomIndex];
 };
 
-const generateAuthor = () => {
+export const generateAuthor = () => {
   const authors = ['Джон Доу', 'Тим Маковеев', 'John Doe '];
   const randomIndex = getRandomInteger (0, authors.length - 1);
   return authors[randomIndex];
 };
 
- const generateComment = () => {
+ export const generateComment = () => {
   return {
     text: generateText(),
     emotion: generateEmotion(),
@@ -114,18 +114,18 @@ const generateAuthor = () => {
   }
 }
 
-const generateComments = () => {
+export const generateComments = () => {
   return new Array(getRandomInteger(0, 20)).fill().map(() => generateComment());;
 }
 
-const generateDate = () => {
+export const generateDate = () => {
   const gap = getRandomInteger(0, 50*365);
   const date = new Date();
   date.setDate(date.getDate() - gap);
   return date;
 }
 
- const generateFilm = () => {
+ export const generateFilm = () => {
   return {
     title: generateTitle(),
     image: generateImage(),
@@ -141,5 +141,5 @@ const generateDate = () => {
 
 
 export const generateFilms = () => {
-  return new Array(getRandomInteger(0, 20)).fill().map(() => generateFilm());
+  return new Array(getRandomInteger(3, 20)).fill().map(() => generateFilm());
 };

@@ -1,4 +1,6 @@
-export const createFilmFilterTemplate = () => {
+import {createElement} from '../common/utils.js';
+
+const createFilmFilterTemplate = () => {
 
   const card = [{
     title: 'The Man with the Golden Arm',
@@ -39,4 +41,27 @@ export const createFilmFilterTemplate = () => {
   }];
 
 
+}
+
+
+export default class FilmFilter {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmFilterTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
 }

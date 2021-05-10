@@ -1,4 +1,6 @@
-export const createFilmsTemplate = (card) => {
+import {createElement} from '../common/utils.js';
+
+const createFilmsTemplate = (card) => {
 
 
 const createFilmCard = (cardItem) => {
@@ -44,4 +46,29 @@ ${createFilmList('Most commented', card.slice(2, 4), true)}
 
           </section>`
 
+}
+
+
+
+export default class Films {
+  constructor(films) {
+    this._films = films;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmsTemplate(this._films);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
 }
