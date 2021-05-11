@@ -141,5 +141,5 @@ export const generateDate = () => {
 
 
 export const generateFilms = () => {
-  return new Array(getRandomInteger(3, 20)).fill().map(() => generateFilm());
+  return new Array(getRandomInteger(0, 20)).fill().map(() => generateFilm());
 };
