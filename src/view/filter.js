@@ -1,4 +1,4 @@
-import {createElement} from '../common/utils.js';
+import Abstract from '../utils/abstract.js';
 
 const createFilterItemTemplate = (filter, isChecked) => {
   const {name, count} = filter;
@@ -12,25 +12,13 @@ const createFilterTemplate = (filterItems) => {
   return <span class="main-navigation__item-count">${filterItemTemplate}</span>
 }
 
-export default class Filter {
+export default class Filter extends Abstract{
   constructor(filters) {
+    super();
     this._filters = filters,
-    this._element = null;
   }
 
   getTemplate() {
     return createFilterTemplate(this._filters);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

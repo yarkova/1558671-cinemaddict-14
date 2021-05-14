@@ -1,4 +1,4 @@
-import {createElement} from '../common/utils.js';
+import Abstract from '../utils/abstract.js';
 
 const createStatsTemplate = () => {
 
@@ -53,24 +53,9 @@ const createStatsTemplate = () => {
 }
 
 
-export default class Stats {
-  constructor() {
-    this._element = null;
-  }
+export default class Stats extends Abstract {
 
   getTemplate() {
     return createStatsTemplate();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

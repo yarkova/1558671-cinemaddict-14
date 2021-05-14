@@ -1,4 +1,4 @@
-import {createElement} from '../common/utils.js';
+import Abstract from '../utils/abstract.js';
 
 const createFilmsTemplate = (card) => {
 
@@ -50,25 +50,19 @@ ${createFilmList('Most commented', card.slice(2, 4), true)}
 
 
 
-export default class Films {
+export default class Films extends Abstract {
   constructor(films) {
+    super();
     this._films = films;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmsTemplate(this._films);
   }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setOpenHandler (callback) {
+    const ClickItems = this.getElement().querySelectorAll('.film-card__title, .film-card__poster, .film-card__comments');
+    for (let element of ClickItems) {
+    element.onclick = openPopupHandler;
+    };
   }
 }

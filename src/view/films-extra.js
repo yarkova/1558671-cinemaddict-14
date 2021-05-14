@@ -1,4 +1,4 @@
-import {createElement} from '../common/utils.js';
+import Abstract from '../utils/abstract.js';
 
 const createFilmFilterTemplate = () => {
 
@@ -44,24 +44,8 @@ const createFilmFilterTemplate = () => {
 }
 
 
-export default class FilmFilter {
-  constructor() {
-    this._element = null;
-  }
-
+export default class FilmFilter extends Abstract {
   getTemplate() {
     return createFilmFilterTemplate();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
